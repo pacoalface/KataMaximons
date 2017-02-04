@@ -38,7 +38,7 @@ public class KarumiHQs {
             maxibonsLeft = 0;
         }
 
-        if (maxibonsLeft <= 3) {
+        if (maxibonsLeft <= MIN_MAXIBONS) {
             buyMaxibons();
             systemChat.sendMessage(String.format("Hi guys, I'm %s. We need more maxibons!", developer.getName()));
         }
