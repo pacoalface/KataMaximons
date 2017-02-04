@@ -3,6 +3,7 @@ package alface.francisco.kata_maxibons;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import java.util.List;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -29,6 +30,14 @@ import static org.mockito.Mockito.verify;
         throws Exception {
         karumiHQs.openFridge(developer);
         //System.out.println(developer.toString());
+        assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+    }
+
+    @Property public void theNumberOfMaxibonsToGrabIsGreaterThan2WhenMoreThanOneDeveloperOpenFridge(
+        List<@From(DevelopersGenerator.class) Developer> developers) {
+        karumiHQs.openFridge(developers);
+
+        System.out.println(developers.size());
         assertTrue(karumiHQs.getMaxibonsLeft() > 2);
     }
 
