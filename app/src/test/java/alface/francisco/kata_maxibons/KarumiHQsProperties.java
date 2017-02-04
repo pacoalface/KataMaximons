@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -46,5 +47,11 @@ import static org.mockito.Mockito.verify;
 
         karumiHQs.openFridge(developer);
         verify(chat).sendMessage(String.format("Hi guys, I'm %s. We need more maxibons!", developer.getName()));
+    }
+
+    @Property() public void verifyNoMessageSent(@From(NotSoHungryDeveloperGenerator.class) Developer developer) {
+        karumiHQs.openFridge(developer);
+        verify(chat, never()).sendMessage(
+            String.format("Hi guys, I'm %s. We need more maxibons!", developer.getName()));
     }
 }
