@@ -9,6 +9,10 @@ class Developer {
     private String name;
     private int numberOfMaxibons;
 
+    public Developer(String name, int numberOfMaxibons) {
+        this.name = name;
+        this.numberOfMaxibons = numberOfMaxibons >= 0 ? numberOfMaxibons : 0;
+    }
 
     public String getName() {
         return name;
