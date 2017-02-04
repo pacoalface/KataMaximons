@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by franciscoalfacemartin on 4/2/17.
@@ -29,5 +30,12 @@ import static org.junit.Assert.assertTrue;
         karumiHQs.openFridge(developer);
         //System.out.println(developer.toString());
         assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+    }
+
+    @Property(trials = 20) public void ifThereAreLessThanTwoMaxibonsLeftAMessageIsSentRequestingMore(
+        @From(HungryDevelopersGenerator.class) Developer developer) {
+
+        karumiHQs.openFridge(developer);
+        verify(chat).sendMessage(String.format("Hi guys, I'm %s. We need more maxibons!", developer.getName()));
     }
 }
